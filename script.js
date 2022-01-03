@@ -74,7 +74,6 @@ btnScrollTo.addEventListener('click', e => {
 // 2. Determine what element orignated the event
 
 document.querySelector('.nav__links').addEventListener('click', function (e) {
-  console.log(e.target);
   e.preventDefault();
 
   // Matching
@@ -82,4 +81,28 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
     const id = e.target.getAttribute('href');
     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   }
+});
+
+///////////////////////////////////////
+// Tabbed Component
+///////////////////////////////////////
+
+const tabs = document.querySelectorAll('.operations__tab');
+const tabContainer = document.querySelector('.operations__tab-container');
+const tanbContent = document.querySelectorAll('.operations__content');
+
+tabContainer.addEventListener('click', function (e) {
+  // Matching
+  const clicked = e.target.closest('.operations__tab');
+  if (!clicked) return;
+
+  // Active tab
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+  clicked.classList.add('operations__tab--active');
+  tanbContent.forEach(c => c.classList.remove('operations__content--active'));
+
+  // Active content area
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
 });
