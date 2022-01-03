@@ -129,3 +129,12 @@ const handleHover = function (e) {
 nav.addEventListener('mouseover', handleHover.bind(0.5));
 
 nav.addEventListener('mouseout', handleHover.bind(1));
+
+const initalCoords = section1.getBoundingClientRect();
+///////////////////////////////////////
+// Sticky Navigation
+///////////////////////////////////////
+window.addEventListener('scroll', function () {
+  if (window.scrollY > initalCoords.top) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+});
